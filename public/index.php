@@ -1,10 +1,10 @@
 <?php
 
 use app\models\{Catalog, User, Model, Basket, Image, Order};
-use app\models\example\{Product, Digital, Bulk};
 
 use app\engine\Db;
 
+include "../config/config.php";
 include "../engine/Autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
@@ -13,33 +13,22 @@ function loader($className) {
     (new Autoload())->loadClass($className);
 }
 
+$product = new Catalog('test', 'description', 100, 'test', 0);
+$user = new User('user1', 456, 'ffff');
+// $order = new Order();
+// $basket = new Basket();
 
-$product = new Catalog(new Db());
-$user = new User(new Db());
-$order = new Order(new Db());
-$basket = new Basket(new Db());
+$product->getOne(3);
+$product->insert();
+// $product->getAll();
+// var_dump($user->getOne(1));
+$user->insert();
 
-$product->getOne(5);
-$product->getAll();
-$user->getOne(8);
-$user->getAll();
-$order->getAll();
-$basket->getOne(7);
 
-$test = new Product();
-$test->price = 200;
-$test->count = 1;
-$test->showPrice();
+// $order->getAll();
+// $basket->getOne(7);
 
-$digital = new Digital();
-$digital->price = 200;
-$digital->count = 1;
-$digital->showPrice();
 
-$bulk = new Bulk();
-$bulk->price = 20;
-$bulk->weight = 1004;
-$bulk->showPrice();
 
 /*
 // CREATE

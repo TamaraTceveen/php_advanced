@@ -3,7 +3,7 @@ class Autoload
 {
     function loadClass($className){
         $find = array("app\\", "\\");
-        $replace = array("../", "/");
+        $replace = array(ROOT . DS, DS);
         $className = str_replace($find, $replace, $className) . ".php";
         
         // var_dump($className);
