@@ -1,0 +1,14 @@
+<h1>Каталог</h1>
+    <div class="box">
+    {% for goods in catalog %}
+        <div class="goods">
+            <a href="/product/card/?id={{ goods.id }}" class="goods_link">
+            <img src="/img/small/{{ goods.image }}">
+            {{ goods.name }}
+            </a>
+            Просмотров: {{ goods.view }}
+            <a href="?action=buy&id={{ goods.id }}">Купить</a>
+        </div>
+    {% endfor %}
+    </div>
+<a href="/product/catalog/?page={{ page }}">Еще</a>

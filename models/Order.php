@@ -11,7 +11,7 @@ class Order extends Model
     public $order_date;
     public $status;
 
-    public function __construct($name = '', $phone = '', $session_id = '', $order_date = '', $status = '')
+    public function __construct($name = null, $phone = null, $session_id = null, $order_date = null, $status = null)
     {
         $this->name = $name;
         $this->phone = $phone;

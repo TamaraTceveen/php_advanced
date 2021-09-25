@@ -1,0 +1,44 @@
+.menu {
+    margin: 20px;
+    font-size: 25px;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.goods {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    margin: 15px;
+}
+
+.goods_link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.item_h1 {
+    text-align: center;
+}
+
+.item {
+    display: flex;
+    margin-left: 100px;
+}
+
+.item_descr {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    margin-left: 100px;
+    margin-top: 150px;
+}
+
+.calc {
+    margin-top: 50px;
+    margin-left: 20px;
+}

@@ -2,16 +2,25 @@
 
 namespace app\models;
 
-class Catalog extends Model
+class Catalog extends DBModel
 {
-    public $id;
-    public $name;
-    public $description;
-    public $price;
-    public $image;
-    public $view;
+    protected $id;
+    // became protected $id;
+    protected $name;
+    protected $description;
+    protected $price;
+    protected $image;
+    protected $view;
 
-    public function __construct($name = '', $description = '', $price = '', $image = '', $view = '')
+    protected $props = [
+        'name' => false,
+        'description' => false,
+        'price' => false,
+        'image' => false,
+        'view' => false 
+    ];
+
+    public function __construct($name = null, $description = null, $price = null, $image = null, $view = null)
     {
         $this->name = $name;
         $this->description = $description;
@@ -20,7 +29,7 @@ class Catalog extends Model
         $this->view = $view;
     }
 
-    protected function getTableName() {
+    protected static function getTableName() {
         return 'catalog';
     }
 

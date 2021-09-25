@@ -41,11 +41,12 @@ class Db
     }
 
     public function lastInsertId() {
-        // return id
+        return $this->connection->lastInsertId();
     }
 
     public function query($sql, $params) {
         $stmt = $this->getConnection()->prepare($sql);
+        var_dump($stmt);
         $stmt->execute($params);
         return $stmt;
     }
@@ -62,6 +63,13 @@ class Db
 
     public function queryAll($sql, $params = []) {
         return $this->query($sql, $params)->fetchAll();
+    }
+
+    public function queryLimit($sql, $limit) {
+        $stmt = $this->getConnection()->prepare($sql);
+        $stmt->bindValue(1, $limit, \PDO::PARAM_INT);
+        $stmt->execute(); 
+        return $stmt->fetchAll();
     }
 
     public function execute($sql, $params = []) {

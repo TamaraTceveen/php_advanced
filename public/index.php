@@ -1,55 +1,42 @@
 <?php
+session_start();
 
 use app\models\{Catalog, User, Model, Basket, Image, Order};
 
-use app\engine\Db;
+use app\engine\{Db, Render, TwigRender, Request, Autoload};
 
 include "../config/config.php";
 include "../engine/Autoload.php";
+include "../vendor/autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
-function loader($className) {
-    (new Autoload())->loadClass($className);
+$request = new Request();
+
+
+$controllerName = $request->getControllerName() ?: 'product';
+$actionName = $request->getActionName();
+
+$controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
+
+
+if(class_exists($controllerClass)) {
+    $controller = new $controllerClass(new Render());
+    $controller->runAction($actionName);
+} else {
+    echo "404";
 }
 
-$product = new Catalog('test', 'description', 100, 'test', 0);
-$user = new User('user1', 456, 'ffff');
-// $order = new Order();
-// $basket = new Basket();
-
-$product->getOne(3);
-$product->insert();
-// $product->getAll();
-// var_dump($user->getOne(1));
-$user->insert();
 
 
-// $order->getAll();
-// $basket->getOne(7);
+die();
+$product = Catalog::getOne(3);
+$product->price = 403;
+$product->name = 'Властелин колец: Трилогия';
+$product->save();
 
 
 
-/*
-// CREATE
-$product = new Product();
-$product->name = '1984';
-$product->price = 300;
-$product->insert();
+// оптимально написать апдейт только для сет прайс (в данном случае) магмческие геттеры и сеттеры
+// $product->update();
 
-// READ
-$product = new Product();
-$product->getOne(5);
-$product->getAll();
-
-// UPDATE
-$product = new Product();
-$product->getOne(5);
-$product->price = 350;
-$product->update();
-
-// DELETE
-$product = new Product();
-$product->getOne(5);
-$product->delete();
-*/

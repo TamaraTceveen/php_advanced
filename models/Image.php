@@ -8,7 +8,7 @@ class Image extends Model
     public $name;
     public $likes;
 
-    public function __construct($name = '', $likes = '')
+    public function __construct($name = null, $likes = null)
     {
         $this->name = $name;
         $this->likes = $likes;

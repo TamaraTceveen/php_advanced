@@ -1,4 +1,7 @@
 <?php
+
+namespace app\engine;
+
 class Autoload 
 {
     function loadClass($className){

@@ -1,0 +1,26 @@
+<h2>Корзина</h2>
+<div class="box">
+    {% for goods in basket %}
+    <div class="goods">
+            <a href="/product/card/?id={{ goods.prod_id }}" class="goods_link">
+            <img src="/img/small/{{ goods.image }}">
+            {{ goods.name }}
+            </a>
+            Цена: {{ goods.price }}
+            <a href="#">Удалить</a>
+        </div>
+    {% endfor %}  
+    </div>
+    <br>
+    <h3>ИТОГО {{ summ }} рублей</h3>
+    <br>
+    {% if message is iterable %}
+    Оформите заказ:
+    <form action="?action=order" method="post">
+        <input type="text" name="name" placeholder="Имя">
+        <input type="text" name="phone" placeholder="Телефон">
+        <input type="submit" value="Оформить заказ">
+    </form>
+    {% else %}
+    <h2>{{ message }}</h2>
+    {% endif %}
