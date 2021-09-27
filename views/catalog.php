@@ -18,6 +18,7 @@
 
 <script>
     let buttons = document.querySelectorAll('.buy');
+    
     buttons.forEach((elem) => {
         elem.addEventListener('click', () => {
             let id = elem.getAttribute('data-id');
@@ -31,6 +32,7 @@
                         })
                     });
                     const answer = await response.json();
+                  
                     document.getElementById('count').innerText = answer.count;
                 }
             )();

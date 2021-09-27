@@ -45,7 +45,7 @@ abstract class DBModel extends Model
 
     }
 
-    protected function insert() {
+    protected function insert() {  
 
         $params = [];
         $columns = [];
@@ -78,12 +78,10 @@ abstract class DBModel extends Model
         
         foreach ($this->props as $key => $value)
         {
-            // var_dump("/////////////////".$key);
-            // var_dump("++++++++++++++".$this -> $key);
-
+            
             if(!$value) continue;
             $params["{$key}"] = $this->$key;
-            $columns[] .= "`{$key}` = :{$key}";//
+            $columns[] .= "`{$key}` = :{$key}";
             $this->props[$key] = false;
         }
 
@@ -99,7 +97,7 @@ abstract class DBModel extends Model
     public function delete() {
         $tableName = static::getTableName();
         $sql = "DELETE FROM {$tableName} WHERE id = :id";
-        return Db::getInstance()->execute($sql, ['id' => $this->id]);
+        return Db::getInstance()->execute($sql, ['id' => $this->item_id]);
     }
 
     public function save() {

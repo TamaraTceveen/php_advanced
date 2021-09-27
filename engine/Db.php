@@ -46,7 +46,6 @@ class Db
 
     public function query($sql, $params) {
         $stmt = $this->getConnection()->prepare($sql);
-        var_dump($stmt);
         $stmt->execute($params);
         return $stmt;
     }

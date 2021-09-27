@@ -22,6 +22,7 @@ class Basket extends DBModel
         $this->item_id = $item_id;
         $this->session_id = $session_id;
         $this->item_count = $item_count;
+        // $this->id = $id;
         
         // $sql = "SELECT basket.id FROM `basket` WHERE basket.item_id = {$this->item_id} AND basket.session_id = '{$this->session_id}'";
         // $queryResult = Db::getInstance()->queryOne($sql);

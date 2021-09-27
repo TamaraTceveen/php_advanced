@@ -28,6 +28,22 @@ class BasketController extends Controller
         echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    public function actionDel() {
+
+        $id = (new Request())->getParams()['id'];
+        
+        $session_id = session_id();
+        (new Basket($id, $session_id, 1))->delete();
+        
+        $response = [
+            'success' => 'ok',
+            'count' => Basket::getCountWhere('session_id', session_id())
+        ];
+
+        echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
 
 // 1:24

@@ -28,8 +28,10 @@ class User extends DBModel
 
     public static function auth($login, $pass) {
         $user = User::getOneWhere('login', $login);
-        if ($pass == $user->pass){
+
+        if (hash('sha256', $pass, false) == $user->hash){
             $_SESSION['login'] = $login;
+            setcookie("hash", $user->hash, time() + 3600);
             return true;
         }
         return true;
